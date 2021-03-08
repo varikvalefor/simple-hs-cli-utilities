@@ -8,9 +8,14 @@ pwd = getEnvironment >>= \env ->
 cat :: IO ();
 cat = getArgs >>= mapM_ (readFile >=> putStr);
 
+whoami :: IO ();
+whoami = getEnvironment >>= putStrLn . snd . (!!0) .
+  filter ((== "USER") . fst);
+
 decidePrg :: String -> IO ();
 decidePrg x | x == "pwd" = pwd
             | x == "cat" = cat
+            | x == "whoami" = whoami
 
 main :: IO ();
 main = getProgName >>= decidePrg;
