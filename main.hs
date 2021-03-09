@@ -17,7 +17,7 @@ wc :: IO ();
 wc = getArgs >>= mapM_ (readFile >=> putStrLn . show . length . words);
 
 echo :: IO ();
-echo = getArgs >>= mapM_ putStr . (++ ["\n"]) . intersperse " ";
+echo = getArgs >>= putStrLn . foldr (++) [] . intersperse " ";
 
 decidePrg :: String -> IO ();
 decidePrg x | x == "pwd" = pwd
