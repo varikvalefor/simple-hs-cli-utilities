@@ -23,12 +23,12 @@ env :: IO ();
 env = getEnvironment >>= mapM_ (\a -> putStrLn $ fst a ++ "=" ++ snd a);
 
 decidePrg :: String -> IO ();
-decidePrg x | x == "pwd" = pwd
+decidePrg x | x == "whoami" = whoami
+            | x == "echo" = echo
             | x == "cat" = cat
             | x == "env" = env
-            | x == "whoami" = whoami
+            | x == "pwd" = pwd
             | x == "wc" = wc
-            | x == "echo" = echo
 
 main :: IO ();
 main = getProgName >>= decidePrg;
