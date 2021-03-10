@@ -14,7 +14,7 @@ whoami = getEnvironment >>= putStrLn . snd . (!!0) .
   filter ((== "USER") . fst);
 
 wc :: IO ();
-wc = getArgs >>= mapM_ (readFile >=> putStrLn . show . length . words);
+wc = getArgs >>= mapM_ (readFile >=> print . length . words);
 
 echo :: IO ();
 echo = getArgs >>= putStrLn . foldr (++) [] . intersperse " ";
