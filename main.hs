@@ -3,8 +3,8 @@ import System.Environment;
 import Data.List;
 
 pwd :: IO ();
-pwd = getEnvironment >>= \env ->
-  putStrLn $ snd $ filter ((== "PWD") . fst) env !! 0;
+pwd = getEnvironment >>=
+  putStrLn . snd . (!! 0) . filter ((== "PWD") . fst);
 
 cat :: IO ();
 cat = getArgs >>= mapM_ (readFile >=> putStr);
